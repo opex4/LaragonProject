@@ -1,3 +1,12 @@
-<p>M16 — американская штурмовая винтовка, разработанная на базе AR-15. Принята на вооружение в 1960-х годах. Использует патрон 5,56×45 мм NATO. Обладает высокой точностью и меньшей отдачей, но более требовательна к уходу.</p>
-<br>
-<img src="/images/M16.jpg" alt="M16">
+
+<p class="mt-2">Тут мы вам расскажем об автомате M16</p>
+<a type="button" class="btn btn-outline-primary mx-2" href="/M16/imgM16">Картинка</a>
+<a type="button" class="btn btn-outline-primary mx-2" href="/M16/descriptionM16">Описание</a>
+<?php
+$url = $_SERVER["REQUEST_URI"];
+if ($url == "/M16/descriptionM16") {
+    require "descriptionM16.php";
+} elseif ($url == "/M16/imgM16") {
+    require "imgM16.php";
+}
+?>

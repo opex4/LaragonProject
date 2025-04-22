@@ -33,11 +33,11 @@
             <?php
             $url = $_SERVER["REQUEST_URI"];
             if ($url == "/") {
-                require "../main.php"; // << добавил ../, что означает ищи файл в папке на уровень выше
-            } elseif ($url == "/AK") {
-                require "../AK.php"; // << и тут
-            } elseif ($url == "/M16") {
-                require "../M16.php"; // и здесь
+                require "../main.php";
+            } elseif ($url == "/AK" || $url == "/AK/descriptionAK" || $url == "/AK/imgAK") {
+                require "../AK.php";
+            } elseif ($url == "/M16" || $url == "/M16/descriptionM16" || $url == "/M16/imgM16") {
+                require "../M16.php";
             }
             ?>
         </div>

@@ -1,3 +1,11 @@
-<p>АК (Автомат Калашникова) — надёжный советский автомат, разработанный Михаилом Калашниковым, используется с 1949 года. Отличается простотой конструкции, высокой живучестью и мощным патроном 7,62×39 мм (у АК-47) или 5,45×39 мм (у АК-74).</p>
-<br>
-<img src="/images/Ak74l.jpg" alt="AK">
+<p class="mt-2">Тут мы вам расскажем об автомате АК</p>
+<a type="button" class="btn btn-outline-primary mx-2" href="/AK/imgAK">Картинка</a>
+<a type="button" class="btn btn-outline-primary mx-2" href="/AK/descriptionAK">Описание</a>
+<?php
+$url = $_SERVER["REQUEST_URI"];
+if ($url == "/AK/descriptionAK") {
+    require "descriptionAK.php";
+} elseif ($url == "/AK/imgAK") {
+    require "imgAK.php";
+}
+?>
