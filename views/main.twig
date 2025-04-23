@@ -1,0 +1,12 @@
+{% extends "__layout.twig" %}
+{% block content %}
+    <div class="container">
+    {% for item in menu_items %}
+            <div class="container p-2 border">
+                <button onclick="window.location.href = '/AK'" type="button" class="btn btn-primary btn-sm mx-2" style="width: 100px">{{ item.title }}</button>
+                <a class=" mx-2" href="/{{ item.url_title }}/img">Картинка</a>
+                <a class=" mx-2" href="/{{ item.url_title }}/description">Описание</a>
+            </div>
+    {% endfor %}
+    </div>
+{% endblock %}

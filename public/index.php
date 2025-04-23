@@ -1,45 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <title>Главная</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#"><i class="fas fa-meteor"></i></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Главная</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/AK">АК</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/M16">М16</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <?php
-            $url = $_SERVER["REQUEST_URI"];
-            if ($url == "/") {
-                require "../main.php";
-            } elseif ($url == "/AK" || $url == "/AK/descriptionAK" || $url == "/AK/imgAK") {
-                require "../AK.php";
-            } elseif ($url == "/M16" || $url == "/M16/descriptionM16" || $url == "/M16/imgM16") {
-                require "../M16.php";
-            }
-            ?>
-        </div>
-    </body>
-</html>
+<?php
+
+require_once '../vendor/autoload.php';
+$loader = new \Twig\Loader\FilesystemLoader('../views');
+$twig = new \Twig\Environment($loader);
+
+$title = "";
+$url_title = "";
+
+$template = "";
+$context = [];
+
+$url = $_SERVER["REQUEST_URI"];
+if ($url == "/") {
+    $template = "main.twig";
+    $title = "Автоматы";
+
+    $context['menu_items'] = [
+        [
+            "title" => "AK",
+            "url_title" => "AK",
+        ],
+        [
+            "title" => "M16",
+            "url_title" => "M16",
+        ]
+    ];
+} elseif ($url == "/AK" || $url == "/AK/description" || $url == "/AK/img") {
+    $title = "AK";
+    $url_title = "AK";
+    $template = "object.twig";
+    $context = ['url_title' => $url_title];
+
+    $is_description = $url == '/AK/description';
+    $is_img = $url == '/AK/img';
+    $context['is_img'] = $is_img;
+    $context['is_description'] = $is_description;
+
+    if ($is_img){
+        $template = "object_img.twig";
+        $context['img_url'] = '/images/AK.jpg';
+    } elseif ($is_description){
+        $template = "object_descriptionAK.twig";
+    }
+} elseif ($url == "/M16" || $url == "/M16/description" || $url == "/M16/img") {
+    $title = "M16";
+    $url_title = "M16";
+    $template = "object.twig";
+    $context = ['url_title' => $url_title];
+
+    $is_description = $url == '/M16/description';
+    $is_img = $url == '/M16/img';
+    $context['is_img'] = $is_img;
+    $context['is_description'] = $is_description;
+
+    if ($is_img){
+        $template = "object_img.twig";
+        $context['img_url'] = '/images/M16.jpg';
+    } elseif ($is_description){
+        $template = "object_descriptionM16.twig";
+    }
+}
+
+$context['title'] = $title;
+echo $twig->render($template, $context);
