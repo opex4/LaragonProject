@@ -20,6 +20,12 @@ class MainController extends TwigBaseController
                 "url_title" => "M16",
             ]
         ];
+        $context['nav_items'] = [
+            ['text' => 'Главная', 'url' => '/', 'is_active' => true],
+            ['text' => 'АК', 'url' => '/AK', 'is_active' => false],
+            ['text' => 'М16', 'url' => '/M16', 'is_active' => false],
+            ['text' => 'HK416', 'url' => '/HK416', 'is_active' => false],
+        ];
         return $context;
     }
 }

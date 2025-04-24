@@ -1,12 +1,13 @@
+{% import "macros.twig" as macros %}
 {% extends "__layout.twig" %}
 {% block content %}
     <p class="mt-2">Тут мы вам расскажем об автомате {{ title }}</p>
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a type="button" class="nav-link mx-2 {{ is_img ? 'active'}}" href="/{{ url_title }}/img">Картинка</a>
+            {{ macros.btn("Картинка", "/" ~ url_title ~ "/img", is_img) }}
         </li>
         <li class="nav-item">
-            <a type="button" class="nav-link mx-2 {{ is_description ? 'active'}}" href="/{{ url_title }}/description">Описание</a>
+            {{ macros.btn( "Описание", "/" ~ url_title ~ "/description", is_description) }}
         </li>
     </ul>
     {% block objectContent %}{% endblock %}

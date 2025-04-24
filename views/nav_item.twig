@@ -1,0 +1,7 @@
+<li class="nav-item">
+    <a class="nav-link {{ item.is_active|default(false) ? 'active' : '' }}"
+       href="{{ item.url }}"
+            {{ item.is_active|default(false) ? 'aria-current="page"' : '' }}>
+        {{ item.text }}
+    </a>
+</li>

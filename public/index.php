@@ -15,10 +15,10 @@ require_once "../controllers/M16DescriptionController.php";
 require_once "../controllers/Controller404.php";
 
 
-$title = "";
-$url_title = "";
-
-$template = "";
+//$title = "";
+//$url_title = "";
+//
+//$template = "";
 $context = [];
 
 $controller = null; // создаем переменную под контроллер
